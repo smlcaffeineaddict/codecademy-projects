@@ -1,0 +1,84 @@
+---
+title: "Calculating Population Change Over Time with R"
+author: "Tia Darvell"
+output: html_notebook
+---
+```{r error=TRUE}
+calculate_annual_growth <- function(year_one,year_two,pop_y1, pop_y2,city) {
+  annual_growth <- (((pop_y2 - pop_y1) / pop_y1) * 100) / (year_two-year_one)
+  message <- paste("From", year_one, "to", year_two, "the population of", city, "grew by approximately", annual_growth, "% each year.")
+  print(message)
+  return(annual_growth)
+}
+# Write your code starting here:
+
+# 1. Create the variable city_name
+city_name <- "Istanbul, Turkey"
+
+# 2. Create the variable pop_year_one for the population in 1927
+pop_year_one <- 691000
+
+# 3. Create the variable pop_year_two for the population in 2017
+pop_year_two <- 15029231
+
+# 4. Calculate the difference in population between 2017 and 1927
+pop_change <- pop_year_two - pop_year_one
+
+# 5. Calculate the percentage growth rate
+percentage_gr <- ((pop_change / pop_year_one) * 100)
+
+# 6. Calculate the annual percentage growth rate
+years_elapsed <- 2017 - 1927
+annual_gr <- percentage_gr / years_elapsed
+
+# 7. Print the annual growth rate
+print(annual_gr)
+
+# 8. Test with a different 10-year period (e.g., 2000 to 2017)
+pop_2000 <- 8831800
+pop_2017 <- 15029231
+pop_change_10yrs <- pop_2017 - pop_2000
+percentage_gr_10yrs <- ((pop_change_10yrs / pop_2000) * 100)
+years_elapsed_10yrs <- 2017 - 2000
+annual_gr_10yrs <- percentage_gr_10yrs / years_elapsed_10yrs
+print(annual_gr_10yrs)
+
+# 9. Create function 'calculate_annual_growth' with the arguments
+calculate_annual_growth <- function(year_one, year_two, pop_y1, pop_y2, city) {
+  # calculate population change
+  pop_change <- pop_y2 - pop_y1
+
+  # calculate percentage growth rate
+  percentage_gr <- (pop_change / pop_y1) * 100
+
+  # calculate annual growth rate
+  years_elapsed <- year_two - year_one
+  annual_gr <- percentage_gr / years_elapsed
+
+  # print a summary sentance
+  print(paste(
+    "From", year_one, "to", year_two,
+    "the population of", city,
+    "grew by an annual percentage rate of", round(annual_gr,2), "%"
+  ))
+}
+
+# Call the calculation annual_growth function with variables
+calculate_annual_growth(
+  year_one = 1927,
+  year_two = 2017,
+  pop_y1 = pop_year_one,
+  pop_y2 = pop_year_two,
+  city = city_name
+)
+
+# Call the function again for a different period
+calculate_annual_growth(
+  year_one = 2000,
+  year_two = 2017,
+  pop_y1 = 8831800,
+  pop_y2 = pop_year_two,
+  city = city_name
+)
+
+```
