@@ -1,0 +1,49 @@
+---
+title: "Testing Plots"
+author: "Tia Darvell"
+output: 
+  html_document:
+    toc: true
+---
+```{r}
+# Sample data for plot
+x <- c(1, 2, 3, 4, 5)
+y <- c(1, 4, 9, 16, 25)
+
+# Create plots
+plot(x, y) # points
+plot(x, y, type ='b') # points & lines
+
+# Read data from CSV (make sure the file path is correct)
+my_data <- read.csv('my_data.csv') 
+
+# Load necessary library
+library(nycflights13)
+
+# Create a histogram of the 'distance' column from the flights dataset
+hist(flights$distance)
+
+```
+
+```{r}
+# Create a data frame
+cars <- data.frame(
+  Make = c("Toyota", "Honda", "Ford", "Chevrolet", "BMW"),
+  Model = c("Corolla", "Civic", "Focus", "Malibu", "3 Series"),
+  Year = c(2020, 2019, 2021, 2020, 2022),
+  Mileage = c(15000, 20000, 12000, 18000, 10000),
+  Price = c(20000, 18000, 22000, 21000, 35000)
+)
+
+# Save the data frame as a CSV file
+write.csv(cars, "cars.csv", row.names = FALSE)
+
+# Load the dataset from the CSV file
+cars_data <- read.csv("cars.csv")
+
+# Display the dataset as a table
+print(cars_data)
+
+# Display the dataset as a table using knitr
+knitr::kable(cars_data)
+```
